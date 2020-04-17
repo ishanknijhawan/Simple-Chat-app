@@ -5,4 +5,5 @@ class User(val username: String,
            val email: String,
            val profilePicturePath: String,
            val status: String,
-           val bio: String)
+           val bio: String,
+           val typingStatus: String)

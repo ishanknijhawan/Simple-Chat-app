@@ -82,7 +82,8 @@ class LoginActivity : AppCompatActivity() {
                         "profile_picture_url" to "default",
                         "email" to currentUser.email.toString(),
                         "status" to "online",
-                        "bio" to "Heyy I am using ChatApp!"
+                        "bio" to "Heyy I am using ChatApp!",
+                        "typingStatus" to "noOne"
                     )
 
                         userList["username"] = documentSnapshot.getString("username").toString()
@@ -91,6 +92,7 @@ class LoginActivity : AppCompatActivity() {
                         userList["email"] = currentUser.email.toString()
                         userList["status"] = "online"
                         userList["bio"] = documentSnapshot.getString("bio").toString()
+                        userList["typingStatus"] = documentSnapshot.getString("typingStatus").toString()
 
                         val intent = Intent(this, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK).or(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -138,12 +140,13 @@ class LoginActivity : AppCompatActivity() {
                 }
                 else {
                     val userList = hashMapOf(
-                        "username" to currentUser?.displayName.toString(),
-                        "uid" to currentUser?.uid.toString(),
+                        "username" to currentUser.displayName.toString(),
+                        "uid" to currentUser.uid,
                         "profile_picture_url" to "default",
-                        "email" to currentUser?.email.toString(),
+                        "email" to currentUser.email.toString(),
                         "status" to "online",
-                        "bio" to "Heyy I am using ChatApp!"
+                        "bio" to "Heyy I am using ChatApp!",
+                        "typingStatus" to "noOne"
                     )
 
 //                    Firebase.firestore.collection("users").addSnapshotListener { querySnapshot, e->

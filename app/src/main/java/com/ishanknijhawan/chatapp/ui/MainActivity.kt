@@ -81,7 +81,8 @@ class MainActivity : AppCompatActivity() {
                                 document.getString("email").toString(),
                                 document.getString("profile_picture_url").toString(),
                                 document.getString("status").toString(),
-                                document.getString("bio").toString()
+                                document.getString("bio").toString(),
+                                document.getString("typingStatus").toString()
                             )
                         )
                     }

@@ -5,12 +5,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.google.android.gms.common.api.Api
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -20,8 +21,6 @@ import com.ishanknijhawan.chatapp.adapter.ChatListAdapter
 import com.ishanknijhawan.chatapp.helperClass.APIService
 import com.ishanknijhawan.chatapp.helperClass.Message
 import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.chat_item_left.*
 import java.util.*
 
 
@@ -60,9 +59,9 @@ class ChatActivity : AppCompatActivity() {
 
 
         val senderName: String? = intent.getStringExtra("sender_name")
-        val senderUID: String? = intent.getStringExtra("sender_uid")
+        val hisUID: String? = intent.getStringExtra("sender_uid")
         val senderImageUrl: String? = intent.getStringExtra("sender_dp_url")
-        val receiverUID = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        val myUID = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
         var message: String
         val hour = rightNow.get(Calendar.HOUR)
@@ -76,16 +75,16 @@ class ChatActivity : AppCompatActivity() {
         //apiService = Client.getClient("https://fcm.gooogleapis.com/")!!.create(APIService::class.java)
 
 
-        realtimeUpdateListener(senderUID, receiverUID, senderImageUrl)
+        realtimeUpdateListener(hisUID, myUID, senderImageUrl)
 
         tv_chat_name.text = senderName.toString()
 
         if (senderImageUrl != "default")
             Glide.with(this).load(senderImageUrl).into(ic_chat_icon)
 
-        referenceUsers.document(senderUID.toString()).get()
-            .addOnSuccessListener {
-                if (it.getString("status") == "online"){
+        referenceUsers.document(hisUID.toString())
+            .addSnapshotListener { it, e->
+                if (it!!.getString("status") == "online"){
                     tv_chat_Status.visibility = View.VISIBLE
                     tv_chat_Status.text = "online"
                 }
@@ -94,6 +93,41 @@ class ChatActivity : AppCompatActivity() {
                 }
             }
 
+        referenceUsers.document(hisUID.toString())
+            .addSnapshotListener { it, e->
+                if (it!!.getString("typingStatus") == myUID){
+                    tv_chat_Status.visibility = View.VISIBLE
+                    tv_chat_Status.text = "typing..."
+                }
+                else if(it.getString("status") == "online"){
+                    tv_chat_Status.visibility = View.VISIBLE
+                    tv_chat_Status.text = "online"
+                }
+                else {
+                    tv_chat_Status.visibility = View.GONE
+                }
+            }
+
+        et_chat.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0!!.isNotEmpty()){
+                    checkTypingStatus(hisUID.toString())
+                }
+                else {
+                    checkTypingStatus("noOne")
+                }
+            }
+
+        })
+
         rv_chats.layoutManager = LinearLayoutManager(this)
 
         iv_send.setOnClickListener {
@@ -101,7 +135,7 @@ class ChatActivity : AppCompatActivity() {
             if (message.isEmpty())
                 Toast.makeText(this, "Can't send empty message", Toast.LENGTH_SHORT).show()
             else
-                sendMessage(senderUID, receiverUID, message, timestamp)
+                sendMessage(hisUID, myUID, message, timestamp)
             et_chat.setText("")
         }
 
@@ -109,7 +143,7 @@ class ChatActivity : AppCompatActivity() {
             openFileChooser()
         }
 
-        seenMessage(senderUID)
+        seenMessage(hisUID)
 
     }
 
@@ -231,25 +265,13 @@ class ChatActivity : AppCompatActivity() {
         chatMap["image_url"] = "default"
 
         firestoreChat.document(System.currentTimeMillis().toString()).set(chatMap)
-
-//        val msg = message
-//        val reference = Firebase.firestore.collection("users").document(fUser!!.uid)
-//        reference.addSnapshotListener { documentSnapshot, e ->
-//            sendNotification(receiverUID, documentSnapshot!!.getString("username").toString(), msg)
-//        }
     }
 
-//    private fun sendNotification(receiverUID: String, username: String, msg: String) {
-//        val reference = Firebase.firestore.collection("Tokens")
-//        reference.addSnapshotListener { querySnapshot, e->
-//            for (document in querySnapshot!!.documents){
-//                val data = Data(fUser!!.uid, R.mipmap.ic_launcher, "$username: $msg","New message", receiverUID)
-//                val sender = Sender(data, )
-//
-//                apiService.sendNotification()
-//            }
-//        }
-//    }
+    private fun checkTypingStatus(typing: String){
+        val docRef = referenceUsers.document(fUser!!.uid)
+        docRef.update("typingStatus", typing)
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -266,6 +288,7 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        checkTypingStatus("noOne")
         referenceUsers.document(fUser!!.uid).update("status","offline")
         firestoreChat.addSnapshotListener { querySnapshot, e ->
             for (dataSnapshot in querySnapshot!!.documents){
