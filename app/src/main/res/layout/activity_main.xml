@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
 
 
@@ -27,5 +27,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
+
+    <ImageView
+        android:id="@+id/imageViewHide"
+        android:layout_width="223dp"
+        android:layout_height="195dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_recent_chats"
+        app:layout_constraintEnd_toEndOf="@+id/rv_recent_chats"
+        app:layout_constraintStart_toStartOf="@+id/rv_recent_chats"
+        app:layout_constraintTop_toTopOf="@+id/rv_recent_chats"
+        app:layout_constraintVertical_bias="0.399"
+        app:srcCompat="@drawable/ic_undraw_ideas_s70l" />
+
+    <TextView
+        android:id="@+id/textViewHide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your recent chats appear here"
+
+        app:layout_constraintBottom_toBottomOf="@+id/rv_recent_chats"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewHide"
+        app:layout_constraintStart_toStartOf="@+id/imageViewHide"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.632" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

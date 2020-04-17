@@ -3,54 +3,153 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#fafafa"
+    android:theme="@style/ChatTheme"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity">
+    tools:context=".ui.ChatActivity">
 
-    <EditText
-        android:id="@+id/et_chat"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/white_oval_bg"
-        android:elevation="12dp"
-        android:ems="10"
-        android:hint="send message..."
-        android:inputType="textPersonName"
-        android:paddingStart="30dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:titleMargin="8dp"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="#FFFFFF">
+
+        <ImageButton
+            android:id="@+id/ivHamburger2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="5dp"
+            android:src="@drawable/ic_arrow_back_white_24dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ic_chat_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_user_profile"
+            app:civ_border_color="#FFFFFF"
+            app:civ_border_width="1dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/tv_chat_name"
+                tools:text="ishanknijhawan"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/tv_chat_Status"
+                tools:text="online"
+                android:layout_marginBottom="2dp"
+                android:textColor="#EEEEEE"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/iv_attach_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:padding="16dp"
+            android:tint="@color/colorPrimary"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:foregroundGravity="center"
+            android:src="@drawable/ic_photo" />
+
+        <EditText
+            android:id="@+id/et_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="4dp"
+            android:elevation="12dp"
+            android:ems="10"
+            android:layout_toRightOf="@id/iv_attach_image"
+            android:background="@drawable/white_oval_bg"
+            android:hint="send message..."
+            android:inputType="textMultiLine"
+            android:paddingStart="30dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp" />
+
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chats"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="55dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/iv_send"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/rl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/et_chat"
+        app:layout_constraintTop_toTopOf="@+id/rl"
         app:layout_constraintVertical_bias="0.773"
         android:tint="@color/colorAccent"
         app:srcCompat="@drawable/ic_send" />
+
+    <ProgressBar
+        android:id="@+id/iv_progress"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rl"
+        app:layout_constraintVertical_bias="0.773" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

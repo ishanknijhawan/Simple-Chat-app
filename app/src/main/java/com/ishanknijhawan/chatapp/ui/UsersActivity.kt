@@ -1,23 +1,23 @@
-package com.ishanknijhawan.chatapp
+package com.ishanknijhawan.chatapp.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.*
+import com.ishanknijhawan.chatapp.R
+import com.ishanknijhawan.chatapp.helperClass.User
+import com.ishanknijhawan.chatapp.adapter.UserAdapter
 import kotlinx.android.synthetic.main.activity_users.*
 
 class UsersActivity : AppCompatActivity() {
 
     var mUsers = mutableListOf<User>()
+    val fUser2 = FirebaseAuth.getInstance().currentUser
+    val referenceX = Firebase.firestore.collection("users")
+
     val firestoreChat by lazy {
         Firebase.firestore.collection("users")
     }
@@ -39,13 +39,21 @@ class UsersActivity : AppCompatActivity() {
                             document.getString("username").toString(),
                             document.getString("uid").toString(),
                             document.getString("email").toString(),
-                            document.getString("profile_picture_url").toString()
+                            document.getString("profile_picture_url").toString(),
+                            document.getString("status").toString(),
+                            document.getString("bio").toString()
                         )
                     )
             }
 
             rv_users.layoutManager = LinearLayoutManager(this)
-            rv_users.adapter = UserAdapter(mUsers, this)
+            rv_users.adapter =
+                UserAdapter(
+                    mUsers,
+                    this,
+                    false,
+                    true
+                )
         }
 
 //        firestoreChat.get().addOnSuccessListener { documents ->
@@ -68,13 +76,23 @@ class UsersActivity : AppCompatActivity() {
 //        }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
     }
 
-    override fun onNavigateUp(): Boolean {
-        finish()
-        return super.onNavigateUp()
+    override fun onResume() {
+        super.onResume()
+        referenceX.document(fUser2!!.uid).update("status","online")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        referenceX.document(fUser2!!.uid).update("status","offline")
     }
 }

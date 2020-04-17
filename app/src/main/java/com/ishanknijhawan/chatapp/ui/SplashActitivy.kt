@@ -1,4 +1,4 @@
-package com.ishanknijhawan.chatapp
+package com.ishanknijhawan.chatapp.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

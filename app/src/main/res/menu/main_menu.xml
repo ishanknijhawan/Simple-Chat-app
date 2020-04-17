@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:title="Profile"
+        android:id="@+id/menuProfile" />
+
+    <item
         android:title="Sign out"
         android:id="@+id/menuSignOut" />
 
