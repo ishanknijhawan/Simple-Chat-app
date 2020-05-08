@@ -3,19 +3,24 @@
 
 ---
 
-<h1 id="chatapp">ChatApp</h1>
-<p>Simple ChatApp with the following functionalities</p>
+<h1 id="notefy-notes">NoteFy Notes</h1>
+<p>The Ultimate note taking Android application.</p>
 <h2 id="features">Features</h2>
 <ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Chat with available users</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> message <strong>sending…/Delivered/Seen</strong> status</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Users online/offline status</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> user <strong>typing…</strong> status</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> update user profile picture</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> update user status/Bio</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Image messages are supported</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> App fully functional offline, messages are saved in the cache</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> message timestamp also visible</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Add, Edit, Delete notes</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> add voice notes</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Enable fingerprint unlock for the app</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Tick boxes feature</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Image notes</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Hand written notes (Paint/sketch)</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Archive your notes</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Pin notes on top</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> change notes color</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> Swipe notes to Delete/Archive</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Calendar Events</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Online backup</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="">  Dark Theme</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Screen widgets</li>
 </ul>
 
 <table>
@@ -28,9 +33,9 @@
 </thead>
 <tbody>
 <tr>
-<td><img src="https://user-images.githubusercontent.com/45118110/81303946-0450f800-909a-11ea-98f0-ee0fc68096ea.png" width="310" height="550"></td>
-<td><img src="https://user-images.githubusercontent.com/45118110/81304009-1894f500-909a-11ea-861c-f3f0194ea319.png" width="310" height="550"></td>
-<td><img src="https://user-images.githubusercontent.com/45118110/81304080-34989680-909a-11ea-9052-1989ace259b5.png" width="310" height="550"></td>
+<td><img src="https://user-images.githubusercontent.com/45118110/81301482-bbe40b00-9096-11ea-8791-a6f5d13c1ed0.png" width="310" height="550"></td>
+<td><img src="https://user-images.githubusercontent.com/45118110/81301844-37de5300-9097-11ea-90c0-1a022044632e.png" width="310" height="550"></td>
+<td><img src="https://user-images.githubusercontent.com/45118110/81301932-53e1f480-9097-11ea-93c2-d111286729b1.png" width="310" height="550"></td>
 </tr>
 </tbody>
 </table>
@@ -44,9 +49,9 @@
 </thead>
 <tbody>
 <tr>
-<td><img src="https://user-images.githubusercontent.com/45118110/81304139-4a0dc080-909a-11ea-9a64-48a3082ade8a.png" width="310" height="550"></td>
-<td><img src="https://user-images.githubusercontent.com/45118110/81304185-585bdc80-909a-11ea-8da3-eabb1c9f70e1.png" width="310" height="550"></td>
-<td><img src="https://user-images.githubusercontent.com/45118110/81304222-66a9f880-909a-11ea-9ab7-325299ecdc3e.png" width="310" height="550"></td>
+<td><img src="https://user-images.githubusercontent.com/45118110/81302177-a4f1e880-9097-11ea-9280-6d1d9367c9a2.png" width="310" height="550"></td>
+<td><img src="https://user-images.githubusercontent.com/45118110/81302012-6bb97880-9097-11ea-831f-19265748dcc2.png" width="310" height="550"></td>
+<td><img src="https://user-images.githubusercontent.com/45118110/81302293-ce127900-9097-11ea-9345-74feb4205460.png" width="310" height="550"></td>
 </tr>
 </tbody>
 </table>
